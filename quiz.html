@@ -202,7 +202,109 @@
 
 </div>
 <script>
-  // JS added in Task 2
+  const QUESTIONS = [
+    {
+      text: 'How would you describe your hair thickness?',
+      options: ['Thin', 'Medium', 'Thick']
+    },
+    {
+      text: 'How does your hair behave naturally?',
+      options: ['Straight & smooth', 'Wavy & a bit frizzy', 'Curly or coily']
+    },
+    {
+      text: 'What kind of hold do you want?',
+      options: ['Soft & anti-frizz (no hold)', 'Light & flexible', 'Medium — firm by end of day', 'Strong all-day hold']
+    },
+    {
+      text: 'What finish do you prefer?',
+      options: ['Natural', 'Matte', 'Wet look', 'High shine']
+    },
+    {
+      text: "What's your biggest hair concern?",
+      options: ['Dryness & frizzy', 'Volume', 'Styling']
+    }
+  ];
+
+  // State
+  let currentQ = 0;
+  let answers = new Array(QUESTIONS.length).fill(null);
+
+  // DOM refs
+  const card = document.querySelector('.card');
+  const screens = {
+    intro: document.getElementById('screen-intro'),
+    question: document.getElementById('screen-question'),
+    result: document.getElementById('screen-result')
+  };
+  const progFill = document.getElementById('prog-fill');
+  const progLabel = document.getElementById('prog-label');
+  const questionText = document.getElementById('question-text');
+  const optionsContainer = document.getElementById('options-container');
+  const btnNext = document.getElementById('btn-next');
+
+  function showScreen(name) {
+    card.classList.add('fading');
+    setTimeout(() => {
+      Object.values(screens).forEach(s => s.classList.remove('active'));
+      screens[name].classList.add('active');
+      card.classList.remove('fading');
+    }, 200);
+  }
+
+  function renderQuestion(index) {
+    const q = QUESTIONS[index];
+    progFill.style.width = ((index / QUESTIONS.length) * 100) + '%';
+    progLabel.textContent = (index + 1) + ' of ' + QUESTIONS.length;
+    questionText.textContent = q.text;
+
+    optionsContainer.innerHTML = '';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'opt' + (answers[index] === i ? ' selected' : '');
+      btn.textContent = opt;
+      btn.addEventListener('click', () => selectOption(index, i));
+      optionsContainer.appendChild(btn);
+    });
+
+    btnNext.disabled = answers[index] === null;
+  }
+
+  function selectOption(qIndex, optIndex) {
+    answers[qIndex] = optIndex;
+    document.querySelectorAll('.opt').forEach((btn, i) => {
+      btn.classList.toggle('selected', i === optIndex);
+    });
+    btnNext.disabled = false;
+  }
+
+  function advance() {
+    if (currentQ < QUESTIONS.length - 1) {
+      currentQ++;
+      renderQuestion(currentQ);
+    } else {
+      const scores = computeScores(answers);
+      showResult(scores);
+    }
+  }
+
+  function reset() {
+    currentQ = 0;
+    answers = new Array(QUESTIONS.length).fill(null);
+    renderQuestion(0);
+    showScreen('question');
+  }
+
+  // Stubs — implemented in Tasks 3 & 4
+  function computeScores(answers) { return new Array(9).fill(0); }
+  function showResult(scores) { showScreen('result'); }
+
+  // Event listeners
+  document.getElementById('btn-start').addEventListener('click', () => {
+    renderQuestion(0);
+    showScreen('question');
+  });
+  btnNext.addEventListener('click', advance);
+  document.getElementById('btn-retake').addEventListener('click', reset);
 </script>
 </body>
 </html>
