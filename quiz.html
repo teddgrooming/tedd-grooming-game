@@ -344,8 +344,145 @@
     return scores;
   }
 
-  // Stub — implemented in Task 4
-  function showResult(scores) { showScreen('result'); }
+  const PRODUCTS = [
+    {
+      name: 'Classic Pomade',
+      detail: 'Control hold · High shine · Wet look',
+      scent: 'Grapeberry',
+      scentBg: '#3d0d0d',
+      scentColor: '#c0392b'
+    },
+    {
+      name: 'Moisturizing Fixer',
+      detail: 'Medium hold · Natural finish · 150ml pump',
+      scent: 'Appleberry',
+      scentBg: '#2a0f1f',
+      scentColor: '#9b4f7a'
+    },
+    {
+      name: 'Hair Mousse',
+      detail: 'Firm hold · Natural finish · 160ml pump',
+      scent: 'Parfum',
+      scentBg: '#0a2624',
+      scentColor: '#2a9d8f'
+    },
+    {
+      name: 'Grooming Fixer',
+      detail: 'Medium hold · Natural matte · 120ml spray',
+      scent: 'Apple spearmint',
+      scentBg: '#0f2416',
+      scentColor: '#4a9e5c'
+    },
+    {
+      name: 'Styling Clay',
+      detail: 'Firm hold · Matte finish',
+      scent: 'Vanilla musk',
+      scentBg: '#1c1a12',
+      scentColor: '#b5a97a'
+    },
+    {
+      name: 'Hairspray',
+      detail: 'Strong hold · Wet look · Finisher',
+      scent: 'Parfum',
+      scentBg: '#0a2624',
+      scentColor: '#2a9d8f'
+    },
+    {
+      name: 'Mattifying Dust',
+      detail: 'Firm hold · Matte finish',
+      scent: 'Plain vanilla',
+      scentBg: '#1e1e1a',
+      scentColor: '#d6cfc0'
+    },
+    {
+      name: 'Fixing Pomade',
+      detail: 'Strong hold · Fiber · Wet look',
+      scent: 'Parfum',
+      scentBg: '#0a2624',
+      scentColor: '#2a9d8f'
+    },
+    {
+      name: 'Fixing Pomade',
+      detail: 'Medium hold · Fiber · Wet look',
+      scent: 'Mixfruit',
+      scentBg: '#2d1900',
+      scentColor: '#e8921a'
+    }
+  ];
+
+  function buildWhy(productIndex, answers) {
+    const holdLabels = ['no hold needed', 'a light flexible hold', 'medium hold', 'strong all-day hold'];
+    const finishLabels = ['a natural finish', 'a matte finish', 'a wet look', 'high shine'];
+    const concernLabels = ['keeping hair moisturised and frizz-free', 'adding volume', 'styling and control'];
+
+    const hold = holdLabels[answers[2]] || 'the right hold';
+    const finish = finishLabels[answers[3]] || 'the right finish';
+    const concern = concernLabels[answers[4]] || 'your hair concern';
+
+    const whys = [
+      `Your preference for ${finish} and classic control makes the Pomade the right call — reliable hold with a polished wet look.`,
+      `With ${hold} and a focus on ${concern}, the Moisturizing Fixer keeps hair nourished and manageable without weighing it down.`,
+      `You're after ${hold} and care about ${concern} — the Mousse builds structure and volume while staying soft to touch.`,
+      `Light to medium hold with ${finish} suits your hair perfectly. The Grooming Fixer gives a clean, flexible finish without stiffness.`,
+      `You want strong hold and a matte finish. The Styling Clay gives all-day texture and control with zero shine.`,
+      `Strong hold, wet look, and finishing power — Hairspray locks your style in place and keeps it there all day.`,
+      `Firm hold with a matte finish and your concern for ${concern} — Mattifying Dust absorbs oil and adds grip with no shine.`,
+      `Strong hold with a fiber texture and wet look finish. The Fixing Pomade (parfum) gives serious hold with a sleek result.`,
+      `Medium hold with a fiber texture and wet look finish. The Fixing Pomade (mixfruit) keeps things flexible with a defined, shiny result.`
+    ];
+    return whys[productIndex];
+  }
+
+  function productCard(p, why) {
+    return `
+      <div>
+        <p class="result-badge">Your match</p>
+        <p class="result-name">${p.name}</p>
+        <p class="result-detail">${p.detail}</p>
+        <span class="scent-pill" style="background:${p.scentBg};color:${p.scentColor}">${p.scent}</span>
+      </div>
+      <div class="result-divider"></div>
+      <div>
+        <p class="why-label">Why this works for you</p>
+        <p class="why-text">${why}</p>
+      </div>
+    `;
+  }
+
+  function showResult(scores) {
+    const resultContent = document.getElementById('result-content');
+    const PARFUM_IDX = 7;
+    const MIXFRUIT_IDX = 8;
+
+    const maxScore = Math.max(...scores);
+    const winners = scores.map((s, i) => s === maxScore ? i : -1).filter(i => i >= 0);
+
+    if (winners.length === 2 && winners.includes(PARFUM_IDX) && winners.includes(MIXFRUIT_IDX)) {
+      resultContent.innerHTML = `
+        <div>
+          <p class="result-badge">Your match</p>
+          <p class="result-name">Fixing Pomade</p>
+          <p class="result-detail">Fiber hold · Wet look · Pick your scent</p>
+          <div style="display:flex;gap:10px;margin-top:10px">
+            <span class="scent-pill" style="background:#0a2624;color:#2a9d8f">Parfum</span>
+            <span class="scent-pill" style="background:#2d1900;color:#e8921a">Mixfruit</span>
+          </div>
+        </div>
+        <div class="result-divider"></div>
+        <div>
+          <p class="why-label">Why this works for you</p>
+          <p class="why-text">Both Fixing Pomades suit your hair profile perfectly — same fiber hold and wet look finish. Pick the scent that appeals to you most.</p>
+        </div>
+      `;
+    } else {
+      const idx = winners[0];
+      resultContent.innerHTML = productCard(PRODUCTS[idx], buildWhy(idx, answers));
+    }
+
+    progFill.style.width = '100%';
+    progLabel.textContent = '5 of 5';
+    showScreen('result');
+  }
 
   // Event listeners
   document.getElementById('btn-start').addEventListener('click', () => {
