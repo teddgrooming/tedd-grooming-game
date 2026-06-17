@@ -161,6 +161,42 @@
     margin-top: 6px;
   }
 
+  .combo-card {
+    background: #0e0e0b;
+    border: 0.5px solid #b5a97a;
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .combo-label {
+    font-size: 10px;
+    color: #b5a97a;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .combo-plus {
+    text-align: center;
+    font-size: 20px;
+    color: #b5a97a;
+    font-weight: 500;
+    line-height: 1;
+  }
+  .combo-tip-label {
+    font-size: 10px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .combo-tip-text {
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
   .screen { display: none; }
   .screen.active { display: flex; flex-direction: column; gap: 20px; }
 
@@ -197,6 +233,8 @@
   <div id="screen-result" class="screen">
     <div class="wordmark">· TEDD GROOMING ·</div>
     <div id="result-content"></div>
+    <div id="combo-content" style="display:none"></div>
+    <button class="btn" id="btn-combo" style="display:none">Get a Combo</button>
     <button class="btn" id="btn-retake">Retake quiz</button>
   </div>
 
@@ -291,6 +329,9 @@
     currentQ = 0;
     answers = new Array(QUESTIONS.length).fill(null);
     progFill.style.width = '0%';
+    document.getElementById('combo-content').style.display = 'none';
+    document.getElementById('combo-content').innerHTML = '';
+    document.getElementById('btn-combo').style.display = 'none';
     renderQuestion(0);
     showScreen('question');
   }
@@ -417,6 +458,19 @@
     }
   ];
 
+  // Combo map: productIndex → { comboIndex, tip }
+  // Mattifying Dust (6) has no combo — sole use only
+  const COMBOS = {
+    0: { comboIdx: 2, tip: 'Apply Hair Mousse first to build volume and texture, then work the Pomade through for a polished high-shine finish with lasting hold.' },
+    1: { comboIdx: 2, tip: 'Start with Moisturizing Fixer on damp hair to lock in softness, then add Hair Mousse to define and hold your style without drying it out.' },
+    2: { comboIdx: 1, tip: 'Use Moisturizing Fixer as your base to keep hair soft and hydrated, then layer Hair Mousse on top for structure and hold.' },
+    3: { comboIdx: 1, tip: 'Apply Moisturizing Fixer first for daily care and softness, then finish with Grooming Fixer to lock in a clean natural look.' },
+    4: { comboIdx: 2, tip: 'Blow-dry with Hair Mousse first to lift and build volume, then work Styling Clay through for texture and a firm matte finish.' },
+    5: { comboIdx: 4, tip: 'Style with Styling Clay to build shape and grip, then seal everything in place with Hairspray for all-day hold and wet-look finish.' },
+    7: { comboIdx: 2, tip: 'Work Hair Mousse through damp hair for prep and volume, then apply Fixing Pomade (parfum) to lock your style with strong fiber hold.' },
+    8: { comboIdx: 2, tip: 'Apply Hair Mousse on damp hair first for lightweight hold, then layer Fixing Pomade (mixfruit) to define and add that wet look finish.' }
+  };
+
   function buildWhy(productIndex, answers) {
     const holdLabels = ['no hold needed', 'a light flexible hold', 'medium hold', 'strong all-day hold'];
     const finishLabels = ['a natural finish', 'a matte finish', 'a wet look', 'high shine'];
@@ -488,7 +542,56 @@
 
     progFill.style.width = '100%';
     progLabel.textContent = '5 of 5';
+
+    // Reset combo state
+    document.getElementById('combo-content').style.display = 'none';
+    document.getElementById('combo-content').innerHTML = '';
+    const btnCombo = document.getElementById('btn-combo');
+
+    const winnerIdx = winners.includes(PARFUM_IDX) && winners.includes(MIXFRUIT_IDX) && winners.length === 2
+      ? null : winners[0];
+
+    if (winnerIdx !== null && COMBOS[winnerIdx]) {
+      btnCombo.style.display = 'block';
+      btnCombo.onclick = () => showCombo(winnerIdx);
+    } else {
+      btnCombo.style.display = 'none';
+    }
+
     showScreen('result');
+  }
+
+  function showCombo(winnerIdx) {
+    const combo = COMBOS[winnerIdx];
+    const primary = PRODUCTS[winnerIdx];
+    const partner = PRODUCTS[combo.comboIdx];
+    const comboContent = document.getElementById('combo-content');
+
+    comboContent.innerHTML = `
+      <div class="combo-card">
+        <p class="combo-label">Combo suggestion</p>
+        <div>
+          <p style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.5px">Your pick</p>
+          <p style="font-size:15px;font-weight:500;color:#b5a97a;margin-top:2px">${primary.name}</p>
+          <span class="scent-pill" style="background:${primary.scentBg};color:${primary.scentColor}">${primary.scent}</span>
+        </div>
+        <div class="combo-plus">+</div>
+        <div>
+          <p style="font-size:11px;color:#aaa;text-transform:uppercase;letter-spacing:.5px">Add on</p>
+          <p style="font-size:15px;font-weight:500;color:#b5a97a;margin-top:2px">${partner.name}</p>
+          <p style="font-size:12px;color:#fff;margin-top:2px">${partner.detail}</p>
+          <span class="scent-pill" style="background:${partner.scentBg};color:${partner.scentColor}">${partner.scent}</span>
+        </div>
+        <div style="height:0.5px;background:#2a2820"></div>
+        <div>
+          <p class="combo-tip-label">How to use together</p>
+          <p class="combo-tip-text">${combo.tip}</p>
+        </div>
+      </div>
+    `;
+
+    comboContent.style.display = 'block';
+    document.getElementById('btn-combo').style.display = 'none';
   }
 
   // Event listeners
