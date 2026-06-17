@@ -403,6 +403,7 @@ function endGame(){
 }
 
 const pauseBtn=document.getElementById('pause-btn');
+document.addEventListener('keydown',e=>{if(e.code==='Space'&&running){e.preventDefault();pauseBtn.click();}});
 pauseBtn.addEventListener('click',()=>{
   if(!running)return;
   paused=!paused;
