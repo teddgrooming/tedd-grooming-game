@@ -110,6 +110,7 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
   <div class="pill">Lives <strong id="hv">❤❤❤</strong></div>
   <div class="pill">Level <strong id="lv">1</strong></div>
   <button id="mute-btn">♪ On</button>
+  <button id="pause-btn" style="display:none">⏸ Pause</button>
 </div>
 <div id="tbar-wrap"><div id="tbar-track"><div id="tbar-fill"></div></div></div>
 <div id="cbar-wrap"><div id="cbar-track"><div id="cbar-fill"></div></div></div>
@@ -164,6 +165,7 @@ function getAC(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAud
 const NOTE={C3:130.81,F3:174.61,G3:196,G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,G5:783.99,_:0};
 const MEL=[NOTE.E5,NOTE._,NOTE.C5,NOTE.G4,NOTE.A4,NOTE.C5,NOTE.E5,NOTE.D5,NOTE.B4,NOTE._,NOTE.G4,NOTE.B4,NOTE.C5,NOTE.E5,NOTE.G5,NOTE._];
 const BAS=[NOTE.C3,NOTE._,NOTE.C3,NOTE._,NOTE.F3,NOTE._,NOTE.F3,NOTE._,NOTE.G3,NOTE._,NOTE.G3,NOTE._,NOTE.C3,NOTE._,NOTE.G3,NOTE._];
+let paused=false;
 let chipGain=null,chipPlaying=false,chipStep=0,chipNext=0,musicOn=true;
 const CD=60/130/2;
 function chipSchedule(){
@@ -393,24 +395,46 @@ function endGame(){
   running=false;cancelAnimationFrame(animId);stopChip();
   saveScore(score);items=[];popups=[];burstPts=[];
   updateTimerUI(0);
+  paused=false;pauseBtn.style.display='none';
   const reason=lives<=0?'No lives left!':'Time\'s up!';
   ov.innerHTML=`<img class="ov-logo" src="logo.png" alt="Tedd Grooming" onerror="this.style.display='none'" style="width:min(110px,35%)"><h1>${reason}</h1><p>Final score: <span style="font-size:clamp(18px,4vw,22px);color:#EF9F27;font-weight:600">${score}</span><br>Level ${level} reached. Nice grooming!</p><button id="play-btn">Play again</button>`;
   ov.style.display='flex';
   document.getElementById('play-btn').addEventListener('click',startGame);
 }
 
+const pauseBtn=document.getElementById('pause-btn');
+pauseBtn.addEventListener('click',()=>{
+  if(!running)return;
+  paused=!paused;
+  pauseBtn.textContent=paused?'▶ Resume':'⏸ Pause';
+  if(paused){
+    stopChip();
+    ctx.save();
+    ctx.fillStyle='rgba(0,0,0,0.7)';ctx.fillRect(0,0,W,H);
+    ctx.fillStyle='#fff';ctx.font='bold 28px sans-serif';ctx.textAlign='center';
+    ctx.fillText('PAUSED',W/2,H/2);
+    ctx.restore();
+  } else {
+    lastTime=0;
+    if(musicOn)startChip();
+    animId=requestAnimationFrame(loop);
+  }
+});
+
 function startGame(){
-  score=0;lives=3;combo=1;comboTimer=0;timeLeft=START_TIME;level=1;running=true;
+  score=0;lives=3;combo=1;comboTimer=0;timeLeft=START_TIME;level=1;running=true;paused=false;
   items=[];popups=[];burstPts=[];shakeFrames=0;spawnTimer=0;levelTimer=0;lastTime=0;
   scoreEl.textContent='0';renderLives();levelEl.textContent='1';
   cbarFill.style.width='0%';updateTimerUI(START_TIME);
   ov.style.display='none';
+  pauseBtn.style.display='block';
+  pauseBtn.textContent='⏸ Pause';
   if(musicOn)startChip();
   animId=requestAnimationFrame(loop);
 }
 
 function loop(ts){
-  if(!running)return;
+  if(!running||paused)return;
   if(!lastTime)lastTime=ts;
   const dt=Math.min(ts-lastTime,60);lastTime=ts;
 
