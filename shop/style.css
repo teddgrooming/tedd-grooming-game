@@ -283,15 +283,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 /* ===== PRODUCT DETAIL PAGE ===== */
 .product-detail {
-  max-width: 1400px;
+  max-width: 1020px;
   margin: 0 auto;
-  padding: 0 4rem 5rem;
+  padding: 0 2.5rem 5rem;
 }
 
 .product-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: 4rem;
   padding: 3.5rem 0 3rem;
   align-items: center;
 }
@@ -309,7 +309,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 420px;
+  min-height: 320px;
   background: url('images/studio-background.png') center center / cover no-repeat;
   border-radius: 16px;
   overflow: hidden;
@@ -321,7 +321,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 380px;
+  max-width: 300px;
   object-fit: contain;
   animation: none;
   filter: none;
@@ -421,7 +421,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 /* ===== DETAIL SECTIONS ===== */
 .detail-section {
-  padding: 3rem 0;
+  padding: 2.25rem 0;
   border-bottom: 0.5px solid var(--border);
 }
 
@@ -429,12 +429,12 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
 .section-heading {
   font-family: 'Oswald', sans-serif;
-  font-size: 0.82rem;
+  font-size: 0.62rem;
   font-weight: 600;
   letter-spacing: 0.26em;
   color: var(--text-muted);
   text-transform: uppercase;
-  margin-bottom: 1.6rem;
+  margin-bottom: 1.4rem;
 }
 
 /* Benefits */
@@ -460,9 +460,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 .benefit-text {
-  font-size: 1.08rem;
+  font-size: 0.9rem;
   color: #bbb;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 /* Steps */
@@ -479,12 +479,12 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 .step-num {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: 0.5px solid var(--accent);
   background: var(--badge-bg);
-  font-size: 0.85rem;
+  font-size: 0.7rem;
   color: var(--accent);
   display: flex;
   align-items: center;
@@ -496,10 +496,10 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 .step-text {
-  font-size: 1.08rem;
+  font-size: 0.9rem;
   color: #bbb;
-  padding-top: 7px;
-  line-height: 1.7;
+  padding-top: 5px;
+  line-height: 1.6;
 }
 
 /* Tags */
@@ -510,8 +510,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 .tag {
-  font-size: 0.88rem;
-  padding: 8px 18px;
+  font-size: 0.7rem;
+  padding: 6px 15px;
   border-radius: 20px;
   background: #181818;
   border: 0.5px solid #262626;
