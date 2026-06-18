@@ -105,7 +105,52 @@ a, button { -webkit-tap-highlight-color: transparent; }
   width: 48px;
   height: 2px;
   background: #c8a84b;
-  margin: 0 auto;
+  margin: 0 auto 2.2rem;
+}
+
+/* ===== COLLECTION LINKS ===== */
+.collection-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.collection-link {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #666;
+  padding: 8px 22px;
+  border: 1px solid #333;
+  border-radius: 2px;
+  transition: color 0.2s, border-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.collection-link.active {
+  color: #c8a84b;
+  border-color: #c8a84b;
+}
+
+.collection-link.coming-soon {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.cs-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.12em;
+  color: #888;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 2px 7px;
+  text-transform: uppercase;
 }
 
 /* ===== PRODUCT GRID ===== */

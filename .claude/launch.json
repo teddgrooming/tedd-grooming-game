@@ -9,8 +9,8 @@
     },
     {
       "name": "Tedd Grooming Shop",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3002", "--directory", "C:/Claude/Game"],
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3002", "C:/Claude/Game"],
       "port": 3002
     }
   ]
