@@ -420,6 +420,25 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 /* ===== DETAIL SECTIONS ===== */
+.detail-sections-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 3rem;
+  border-bottom: 0.5px solid var(--border);
+}
+.detail-sections-duo .detail-section {
+  border-bottom: none;
+}
+
+@media (max-width: 680px) {
+  .detail-sections-duo {
+    grid-template-columns: 1fr;
+  }
+  .detail-sections-duo .detail-section:first-child {
+    border-bottom: 0.5px solid var(--border);
+  }
+}
+
 .detail-section {
   padding: 2.25rem 0;
   border-bottom: 0.5px solid var(--border);
