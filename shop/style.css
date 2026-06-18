@@ -59,6 +59,19 @@ a, button { -webkit-tap-highlight-color: transparent; }
   justify-content: center;
 }
 
+/* Product detail navbar — logo centered, back link absolute so it doesn't offset logo */
+.navbar--detail {
+  justify-content: center;
+  position: relative;
+}
+.navbar--detail .nav-back {
+  position: absolute;
+  left: 2.5rem;
+}
+@media (max-width: 520px) {
+  .navbar--detail .nav-back { left: 1.25rem; }
+}
+
 .nav-back {
   display: flex;
   align-items: center;
