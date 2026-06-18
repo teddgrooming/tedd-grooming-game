@@ -51,7 +51,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 }
 
 .nav-logo {
-  height: 64px;
+  height: 128px;
   filter: brightness(0) invert(1);
   opacity: 1;
 }
