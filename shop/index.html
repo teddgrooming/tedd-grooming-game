@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
   <title>Tedd Grooming - All Products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -45,7 +46,6 @@
     /* === PRODUCT IMAGE SCENES === */
     .card-img-scene {
       position: relative;
-      /* bleed edge-to-edge across card padding */
       width: calc(100% + 2.5rem);
       margin-top: -2rem;
       margin-left: -1.25rem;
@@ -58,12 +58,15 @@
       justify-content: center;
       height: 200px;
       padding-bottom: 12px;
+      /* force GPU compositing layer — fixes Samsung rendering */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
-    /* Samsung: drop-shadow filter inside positioned container causes dim compositing */
     .card-img-scene .card-img {
       margin-bottom: 0;
-      -webkit-filter: none !important;
-      filter: none !important;
+      /* brightness boost compensates for Samsung AMOLED dimming; no drop-shadow to avoid compositing issues */
+      -webkit-filter: brightness(1.12) !important;
+      filter: brightness(1.12) !important;
     }
     @media (max-width: 520px) {
       .card-img-scene {
@@ -83,9 +86,9 @@
     /* Hair Mousse — frosted glass, cool aqua mist */
     .scene--mousse {
       background: linear-gradient(180deg,
-        #030e14 0%, #07202e 52%,
-        rgba(140,200,215,0.55) 53%, rgba(140,200,215,0.55) 54%,
-        #3d6e7d 55%, #2a5060 100%
+        #0a2535 0%, #143d52 52%,
+        rgba(160,215,228,0.65) 53%, rgba(160,215,228,0.65) 54%,
+        #4d8a9d 55%, #3a6e80 100%
       );
     }
     /* Grooming Fixer — photo scene */
@@ -95,49 +98,49 @@
     /* Classic Pomade — polished lacquer, deep burgundy */
     .scene--pomade-classic {
       background: linear-gradient(180deg,
-        #0f0204 0%, #200508 52%,
-        rgba(148,28,38,0.65) 53%, rgba(148,28,38,0.65) 54%,
-        #280608 55%, #180304 100%
+        #1e0408 0%, #330810 52%,
+        rgba(180,35,48,0.7) 53%, rgba(180,35,48,0.7) 54%,
+        #4a0e16 55%, #350a10 100%
       );
     }
     /* Fixing Pomade Parfum — white marble, teal luxury */
     .scene--pomade-parfum {
       background: linear-gradient(180deg,
-        #030c14 0%, #071a26 52%,
-        rgba(200,212,218,0.65) 53%, rgba(200,212,218,0.65) 54%,
-        #8ba2aa 55%, #6a8290 100%
+        #081828 0%, #102638 52%,
+        rgba(210,222,228,0.75) 53%, rgba(210,222,228,0.75) 54%,
+        #9ab2bc 55%, #7a9298 100%
       );
     }
     /* Fixing Pomade Mixfruit — terracotta, citrus warm */
     .scene--pomade-mixfruit {
       background: linear-gradient(180deg,
-        #1a0a02 0%, #361405 52%,
-        rgba(188,96,48,0.6) 53%, rgba(188,96,48,0.6) 54%,
-        #8a3d14 55%, #6a2e0e 100%
+        #2a1204 0%, #4a1e08 52%,
+        rgba(205,108,55,0.7) 53%, rgba(205,108,55,0.7) 54%,
+        #a04a1e 55%, #803818 100%
       );
     }
     /* Moisturizing Fixer — rose quartz, berry glow */
     .scene--moisturizing {
       background: linear-gradient(180deg,
-        #120508 0%, #240a12 52%,
-        rgba(208,152,172,0.55) 53%, rgba(208,152,172,0.55) 54%,
-        #8a4460 55%, #6a3048 100%
+        #200810 0%, #38101e 52%,
+        rgba(225,165,185,0.65) 53%, rgba(225,165,185,0.65) 54%,
+        #a05470 55%, #805058 100%
       );
     }
     /* Hair Spray — brushed chrome, steel cool */
     .scene--hairspray {
       background: linear-gradient(180deg,
-        #040810 0%, #0a1424 52%,
-        rgba(178,188,202,0.65) 53%, rgba(178,188,202,0.65) 54%,
-        #5e6e82 55%, #48566a 100%
+        #081020 0%, #10203a 52%,
+        rgba(195,205,218,0.72) 53%, rgba(195,205,218,0.72) 54%,
+        #6e8098 55%, #566678 100%
       );
     }
     /* Mattifying Dust — sandstone, warm cream matte */
     .scene--dust {
       background: linear-gradient(180deg,
-        #100c04 0%, #221806 52%,
-        rgba(192,166,105,0.55) 53%, rgba(192,166,105,0.55) 54%,
-        #8a6e38 55%, #6a5228 100%
+        #1e1608 0%, #342610 52%,
+        rgba(210,182,118,0.65) 53%, rgba(210,182,118,0.65) 54%,
+        #a07e48 55%, #7a5e32 100%
       );
     }
   </style>
