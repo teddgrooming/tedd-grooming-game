@@ -8,156 +8,184 @@
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Card accent top border */
+    .card { border-top-width: 2px !important; border-top-style: solid !important; }
+
+    /* Badge: explicit, no CSS vars needed */
+    .card-badge {
+      display: inline-block;
+      font-size: 0.6rem;
+      padding: 5px 13px;
+      border-radius: 20px;
+      letter-spacing: 0.07em;
+      border-width: 1px;
+      border-style: solid;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    /* Size buttons */
     .card-sizes { display:flex; gap:6px; margin-top:10px; justify-content:center; }
     .card-size-btn {
       font-family:'Oswald',sans-serif; font-size:0.7rem; letter-spacing:0.06em;
-      padding:6px 12px; min-height:36px; border-radius:4px; border:1px solid var(--badge-border);
-      background:var(--badge-bg); color:#aaa; cursor:pointer; transition:all .2s;
-      touch-action:manipulation;
+      padding:6px 12px; min-height:36px; border-radius:4px;
+      background:#222; color:#aaa; cursor:pointer; transition:all .2s;
+      touch-action:manipulation; border:1px solid #444;
     }
-    .card-size-btn.active, .card-size-btn:hover {
-      background:var(--accent); border-color:var(--accent); color:#fff;
+    .card-size-btn.active { color:#fff; }
+
+    /* Logo explicit */
+    .nav-logo {
+      height: 56px !important;
+      display: block;
+      filter: brightness(0) invert(1) !important;
+      -webkit-filter: brightness(0) invert(1) !important;
+      opacity: 1 !important;
     }
   </style>
 </head>
 <body>
 
 <nav class="navbar navbar--centered">
-  <img src="images/tedd-logo.png" alt="Tedd Grooming" class="nav-logo">
+  <img src="images/tedd-logo.png" alt="Tedd Grooming" class="nav-logo" width="auto" height="56">
 </nav>
 
 <section class="page-hero">
   <h1>Our Products</h1>
-  <p>Grooming for Performance</p>
+  <p style="color:#888;">Grooming for Performance</p>
   <div class="hero-divider"></div>
 </section>
 
 <main class="product-grid">
 
-  <!-- ── Row 1: Clay · Hair Mousse · Grooming Fixer ── -->
-
+  <!-- ── Styling Clay ── -->
   <a class="card" href="products/styling-clay.html"
-     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6)">
+     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-top-color:#c8a84b;">
     <img src="images/styling-clay-60g.png" alt="Firm Hold Styling Clay" class="card-img">
     <div class="card-content">
       <p class="card-name">Firm Hold Styling Clay</p>
       <p class="card-meta">Firm Hold · Natural Finish</p>
-      <span class="card-badge">Vanilla Musk Scent</span>
+      <span class="card-badge" style="color:#c8a84b; background:rgba(200,168,75,0.18); border-color:rgba(200,168,75,0.7);">Vanilla Musk Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active" onclick="cardSize(event,'images/styling-clay-60g.png',this)">60g</button>
-        <button class="card-size-btn" onclick="cardSize(event,'images/styling-clay-120g.png',this)">120g</button>
+        <button class="card-size-btn active" style="border-color:#c8a84b; background:rgba(200,168,75,0.2);" onclick="cardSize(event,'images/styling-clay-60g.png',this,'#c8a84b')">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/styling-clay-120g.png',this,'#c8a84b')">120g</button>
       </div>
     </div>
   </a>
 
+  <!-- ── Hair Mousse ── -->
   <a class="card" href="products/hair-mousse.html"
-     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6)">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-top-color:#1dd4c4;">
     <img src="images/hair-mousse-160ml.png" alt="Hair Mousse" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Mousse</p>
       <p class="card-meta">Medium Hold · Wet Finish</p>
-      <span class="card-badge">Parfum Scent</span>
+      <span class="card-badge" style="color:#1dd4c4; background:rgba(29,212,196,0.18); border-color:rgba(29,212,196,0.7);">Parfum Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active">160ml</button>
+        <button class="card-size-btn active" style="border-color:#1dd4c4; background:rgba(29,212,196,0.2);">160ml</button>
       </div>
     </div>
   </a>
 
+  <!-- ── Grooming Fixer ── -->
   <a class="card" href="products/grooming-fixer.html"
-     style="--accent:#27ae60;--glow:rgba(39,174,96,0.18);--badge-bg:rgba(39,174,96,0.18);--badge-border:rgba(39,174,96,0.6)">
+     style="--accent:#27ae60;--glow:rgba(39,174,96,0.18);--badge-bg:rgba(39,174,96,0.18);--badge-border:rgba(39,174,96,0.6); border-top-color:#27ae60;">
     <img src="images/grooming-fixer-120ml.png" alt="Grooming Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Grooming Fixer</p>
       <p class="card-meta">Light Hold · Natural Finish</p>
-      <span class="card-badge">Apple Spearmint</span>
+      <span class="card-badge" style="color:#27ae60; background:rgba(39,174,96,0.18); border-color:rgba(39,174,96,0.7);">Apple Spearmint</span>
       <div class="card-sizes">
-        <button class="card-size-btn active" onclick="cardSize(event,'images/grooming-fixer-120ml.png',this)">120ml</button>
-        <button class="card-size-btn" onclick="cardSize(event,'images/grooming-fixer-250ml.png',this)">250ml</button>
+        <button class="card-size-btn active" style="border-color:#27ae60; background:rgba(39,174,96,0.2);" onclick="cardSize(event,'images/grooming-fixer-120ml.png',this,'#27ae60')">120ml</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/grooming-fixer-250ml.png',this,'#27ae60')">250ml</button>
       </div>
     </div>
   </a>
 
-  <!-- ── Row 2: Classic Pomade · Fixing Pomade Parfum · Fixing Pomade Mixfruit ── -->
-
+  <!-- ── Classic Pomade ── -->
   <a class="card" href="products/pomade-controlhold.html"
-     style="--accent:#c0392b;--glow:rgba(192,57,43,0.18);--badge-bg:rgba(192,57,43,0.18);--badge-border:rgba(192,57,43,0.6)">
+     style="--accent:#c0392b;--glow:rgba(192,57,43,0.18);--badge-bg:rgba(192,57,43,0.18);--badge-border:rgba(192,57,43,0.6); border-top-color:#c0392b;">
     <img src="images/pomade-classic-60g.png" alt="Classic Pomade" class="card-img">
     <div class="card-content">
       <p class="card-name">Classic Pomade</p>
       <p class="card-meta">Control Hold · High Shine</p>
-      <span class="card-badge">Grapeberry Scent</span>
+      <span class="card-badge" style="color:#c0392b; background:rgba(192,57,43,0.18); border-color:rgba(192,57,43,0.7);">Grapeberry Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active" onclick="cardSize(event,'images/pomade-classic-60g.png',this)">60g</button>
-        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-classic-150g.png',this)">150g</button>
+        <button class="card-size-btn active" style="border-color:#c0392b; background:rgba(192,57,43,0.2);" onclick="cardSize(event,'images/pomade-classic-60g.png',this,'#c0392b')">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-classic-150g.png',this,'#c0392b')">150g</button>
       </div>
     </div>
   </a>
 
+  <!-- ── Fixing Pomade Parfum ── -->
   <a class="card" href="products/fixing-pomade-parfum.html"
-     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6)">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-top-color:#1dd4c4;">
     <img src="images/pomade-fiber-parfum-60g.png" alt="Fixing Pomade Parfum" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Parfum</p>
       <p class="card-meta">Strong Hold · Medium Shine</p>
-      <span class="card-badge">Parfum Scent</span>
+      <span class="card-badge" style="color:#1dd4c4; background:rgba(29,212,196,0.18); border-color:rgba(29,212,196,0.7);">Parfum Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active" onclick="cardSize(event,'images/pomade-fiber-parfum-60g.png',this)">60g</button>
-        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-fiber-parfum-150g.png',this)">150g</button>
+        <button class="card-size-btn active" style="border-color:#1dd4c4; background:rgba(29,212,196,0.2);" onclick="cardSize(event,'images/pomade-fiber-parfum-60g.png',this,'#1dd4c4')">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-fiber-parfum-150g.png',this,'#1dd4c4')">150g</button>
       </div>
     </div>
   </a>
 
+  <!-- ── Fixing Pomade Mixfruit ── -->
   <a class="card" href="products/fixing-pomade-mixfruit.html"
-     style="--accent:#e67e22;--glow:rgba(230,126,34,0.18);--badge-bg:rgba(230,126,34,0.18);--badge-border:rgba(230,126,34,0.6)">
+     style="--accent:#e67e22;--glow:rgba(230,126,34,0.18);--badge-bg:rgba(230,126,34,0.18);--badge-border:rgba(230,126,34,0.6); border-top-color:#e67e22;">
     <img src="images/pomade-fiber-mixfruit-60g.png" alt="Fixing Pomade Mixfruit" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Mixfruit</p>
       <p class="card-meta">Medium Hold · Medium Shine</p>
-      <span class="card-badge">Mix Fruit Scent</span>
+      <span class="card-badge" style="color:#e67e22; background:rgba(230,126,34,0.18); border-color:rgba(230,126,34,0.7);">Mix Fruit Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active" onclick="cardSize(event,'images/pomade-fiber-mixfruit-60g.png',this)">60g</button>
-        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-fiber-mixfruit-150g.png',this)">150g</button>
+        <button class="card-size-btn active" style="border-color:#e67e22; background:rgba(230,126,34,0.2);" onclick="cardSize(event,'images/pomade-fiber-mixfruit-60g.png',this,'#e67e22')">60g</button>
+        <button class="card-size-btn" onclick="cardSize(event,'images/pomade-fiber-mixfruit-150g.png',this,'#e67e22')">150g</button>
       </div>
     </div>
   </a>
 
-  <!-- ── Row 3: Moisturizing Fixer · Hair Spray · Mattifying Dust ── -->
-
+  <!-- ── Moisturizing Fixer ── -->
   <a class="card" href="products/moisturizing-fixer.html"
-     style="--accent:#c4527a;--glow:rgba(196,82,122,0.18);--badge-bg:rgba(196,82,122,0.18);--badge-border:rgba(196,82,122,0.6)">
+     style="--accent:#c4527a;--glow:rgba(196,82,122,0.18);--badge-bg:rgba(196,82,122,0.18);--badge-border:rgba(196,82,122,0.6); border-top-color:#c4527a;">
     <img src="images/moisturizing-fixer-150ml.png" alt="Moisturizing Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Moisturizing Fixer</p>
       <p class="card-meta">Silky · Wet Finish</p>
-      <span class="card-badge">Appleberry Scent</span>
+      <span class="card-badge" style="color:#c4527a; background:rgba(196,82,122,0.18); border-color:rgba(196,82,122,0.7);">Appleberry Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active">150ml</button>
+        <button class="card-size-btn active" style="border-color:#c4527a; background:rgba(196,82,122,0.2);">150ml</button>
       </div>
     </div>
   </a>
 
+  <!-- ── Hair Spray ── -->
   <a class="card" href="products/hairspray.html"
-     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6)">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-top-color:#1dd4c4;">
     <img src="images/hairspray-420ml.png" alt="Hair Spray" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Spray</p>
       <p class="card-meta">Strong Hold · High Shine</p>
-      <span class="card-badge">Parfum Scent</span>
+      <span class="card-badge" style="color:#1dd4c4; background:rgba(29,212,196,0.18); border-color:rgba(29,212,196,0.7);">Parfum Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active">420ml</button>
+        <button class="card-size-btn active" style="border-color:#1dd4c4; background:rgba(29,212,196,0.2);">420ml</button>
       </div>
     </div>
   </a>
 
+  <!-- ── Mattifying Dust ── -->
   <a class="card" href="products/mattifying-dust.html"
-     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6)">
+     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-top-color:#c8a84b;">
     <img src="images/mattifying-dust-25g.png" alt="Mattifying Dust" class="card-img">
     <div class="card-content">
       <p class="card-name">Mattifying Dust</p>
       <p class="card-meta">Firm Hold · Matte Finish</p>
-      <span class="card-badge">Vanilla Scent</span>
+      <span class="card-badge" style="color:#c8a84b; background:rgba(200,168,75,0.18); border-color:rgba(200,168,75,0.7);">Vanilla Scent</span>
       <div class="card-sizes">
-        <button class="card-size-btn active">25g</button>
+        <button class="card-size-btn active" style="border-color:#c8a84b; background:rgba(200,168,75,0.2);">25g</button>
       </div>
     </div>
   </a>
@@ -178,13 +206,21 @@
     });
   });
 
-  function cardSize(e, src, btn) {
+  function cardSize(e, src, btn, color) {
     e.preventDefault();
     e.stopPropagation();
     const card = btn.closest('.card');
     card.querySelector('.card-img').src = src;
-    card.querySelectorAll('.card-size-btn').forEach(b => b.classList.remove('active'));
+    card.querySelectorAll('.card-size-btn').forEach(b => {
+      b.classList.remove('active');
+      b.style.borderColor = '#444';
+      b.style.background = '#222';
+    });
     btn.classList.add('active');
+    if (color) {
+      btn.style.borderColor = color;
+      btn.style.background = 'rgba(128,128,128,0.15)';
+    }
   }
 </script>
 
