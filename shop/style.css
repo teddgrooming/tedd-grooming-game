@@ -314,16 +314,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
   overflow: hidden;
 }
 
-.product-glow-bg { display: none; }
-
-.product-splatter {
+.product-glow-bg {
   position: absolute;
-  inset: 0;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--glow);
+  filter: blur(70px);
   z-index: 0;
   pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .product-hero-img {
