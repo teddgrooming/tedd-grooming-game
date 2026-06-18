@@ -310,7 +310,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   width: 100%;
   max-width: 300px;
   object-fit: contain;
-  animation: floatY 5s ease-in-out infinite;
+  animation: none;
   filter: drop-shadow(0 24px 48px rgba(0,0,0,0.7));
   transition: opacity 0.25s ease;
 }
