@@ -309,6 +309,9 @@ a, button { -webkit-tap-highlight-color: transparent; }
   align-items: center;
   justify-content: center;
   min-height: 320px;
+  background: url('images/studio-background.png') center center / cover no-repeat;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .product-glow-bg {
