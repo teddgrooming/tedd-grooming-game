@@ -311,16 +311,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
   min-height: 320px;
 }
 
-.product-glow-bg {
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 50%;
-  background: var(--glow);
-  filter: blur(70px);
-  z-index: 0;
-  pointer-events: none;
-}
+.product-glow-bg { display: none; }
 
 .product-hero-img {
   position: relative;
