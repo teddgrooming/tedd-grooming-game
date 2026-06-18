@@ -35,10 +35,10 @@
     }
     .card-size-btn.active { color:#fff; }
 
-    /* Logo - default for iOS/desktop */
+    /* Logo - no filter, show original colors */
     .nav-logo {
-      -webkit-filter: brightness(0) invert(1) !important;
-      filter: brightness(0) invert(1) !important;
+      -webkit-filter: none !important;
+      filter: none !important;
       opacity: 1 !important;
     }
   </style>
@@ -191,13 +191,6 @@
 </footer>
 
 <script>
-  // Samsung Internet needs invert(1) only — brightness(0) breaks it
-  if (/SamsungBrowser/i.test(navigator.userAgent)) {
-    document.querySelectorAll('.nav-logo, .footer-logo').forEach(el => {
-      el.style.setProperty('-webkit-filter', 'invert(1)', 'important');
-      el.style.setProperty('filter', 'invert(1)', 'important');
-    });
-  }
 
   document.querySelectorAll('.card').forEach(card => {
     card.addEventListener('mousemove', e => {
