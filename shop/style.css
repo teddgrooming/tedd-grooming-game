@@ -174,8 +174,8 @@ a, button { -webkit-tap-highlight-color: transparent; }
   }
 
   .card-img {
-    width: 90px;
-    height: 100px;
+    width: 120px;
+    height: 130px;
     margin-bottom: 0.65rem;
   }
 
@@ -207,7 +207,7 @@ a, button { -webkit-tap-highlight-color: transparent; }
 
   /* Logo: mobile only override */
   .nav-logo {
-    height: 48px !important;
+    height: 64px !important;
   }
 }
 @media (max-width: 360px) {
