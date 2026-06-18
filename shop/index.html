@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tedd Grooming — All Products</title>
+  <title>Tedd Grooming - All Products</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Card accent top border */
-    .card { border-top-width: 2px !important; border-top-style: solid !important; }
+    /* Card full colored border - all 4 sides */
+    .card { border-width: 2px !important; border-style: solid !important; }
 
-    /* Badge: explicit, no CSS vars needed */
+    /* Badge: explicit colors, no CSS vars */
     .card-badge {
       display: inline-block;
       font-size: 0.6rem;
@@ -35,12 +35,12 @@
     }
     .card-size-btn.active { color:#fff; }
 
-    /* Logo explicit */
+    /* Logo - Samsung browser compatible */
     .nav-logo {
       height: 56px !important;
       display: block;
-      filter: brightness(0) invert(1) !important;
-      -webkit-filter: brightness(0) invert(1) !important;
+      -webkit-filter: invert(1) !important;
+      filter: invert(1) !important;
       opacity: 1 !important;
     }
   </style>
@@ -48,7 +48,7 @@
 <body>
 
 <nav class="navbar navbar--centered">
-  <img src="images/tedd-logo.png" alt="Tedd Grooming" class="nav-logo" width="auto" height="56">
+  <img src="images/tedd-logo.png" alt="Tedd Grooming" class="nav-logo" height="56">
 </nav>
 
 <section class="page-hero">
@@ -59,9 +59,9 @@
 
 <main class="product-grid">
 
-  <!-- ── Styling Clay ── -->
+  <!-- Styling Clay -->
   <a class="card" href="products/styling-clay.html"
-     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-top-color:#c8a84b;">
+     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-color:#c8a84b;">
     <img src="images/styling-clay-60g.png" alt="Firm Hold Styling Clay" class="card-img">
     <div class="card-content">
       <p class="card-name">Firm Hold Styling Clay</p>
@@ -74,9 +74,9 @@
     </div>
   </a>
 
-  <!-- ── Hair Mousse ── -->
+  <!-- Hair Mousse -->
   <a class="card" href="products/hair-mousse.html"
-     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-top-color:#1dd4c4;">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-color:#1dd4c4;">
     <img src="images/hair-mousse-160ml.png" alt="Hair Mousse" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Mousse</p>
@@ -88,9 +88,9 @@
     </div>
   </a>
 
-  <!-- ── Grooming Fixer ── -->
+  <!-- Grooming Fixer -->
   <a class="card" href="products/grooming-fixer.html"
-     style="--accent:#27ae60;--glow:rgba(39,174,96,0.18);--badge-bg:rgba(39,174,96,0.18);--badge-border:rgba(39,174,96,0.6); border-top-color:#27ae60;">
+     style="--accent:#27ae60;--glow:rgba(39,174,96,0.18);--badge-bg:rgba(39,174,96,0.18);--badge-border:rgba(39,174,96,0.6); border-color:#27ae60;">
     <img src="images/grooming-fixer-120ml.png" alt="Grooming Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Grooming Fixer</p>
@@ -103,9 +103,9 @@
     </div>
   </a>
 
-  <!-- ── Classic Pomade ── -->
+  <!-- Classic Pomade -->
   <a class="card" href="products/pomade-controlhold.html"
-     style="--accent:#c0392b;--glow:rgba(192,57,43,0.18);--badge-bg:rgba(192,57,43,0.18);--badge-border:rgba(192,57,43,0.6); border-top-color:#c0392b;">
+     style="--accent:#c0392b;--glow:rgba(192,57,43,0.18);--badge-bg:rgba(192,57,43,0.18);--badge-border:rgba(192,57,43,0.6); border-color:#c0392b;">
     <img src="images/pomade-classic-60g.png" alt="Classic Pomade" class="card-img">
     <div class="card-content">
       <p class="card-name">Classic Pomade</p>
@@ -118,9 +118,9 @@
     </div>
   </a>
 
-  <!-- ── Fixing Pomade Parfum ── -->
+  <!-- Fixing Pomade Parfum -->
   <a class="card" href="products/fixing-pomade-parfum.html"
-     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-top-color:#1dd4c4;">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-color:#1dd4c4;">
     <img src="images/pomade-fiber-parfum-60g.png" alt="Fixing Pomade Parfum" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Parfum</p>
@@ -133,9 +133,9 @@
     </div>
   </a>
 
-  <!-- ── Fixing Pomade Mixfruit ── -->
+  <!-- Fixing Pomade Mixfruit -->
   <a class="card" href="products/fixing-pomade-mixfruit.html"
-     style="--accent:#e67e22;--glow:rgba(230,126,34,0.18);--badge-bg:rgba(230,126,34,0.18);--badge-border:rgba(230,126,34,0.6); border-top-color:#e67e22;">
+     style="--accent:#e67e22;--glow:rgba(230,126,34,0.18);--badge-bg:rgba(230,126,34,0.18);--badge-border:rgba(230,126,34,0.6); border-color:#e67e22;">
     <img src="images/pomade-fiber-mixfruit-60g.png" alt="Fixing Pomade Mixfruit" class="card-img">
     <div class="card-content">
       <p class="card-name">Fixing Pomade Mixfruit</p>
@@ -148,9 +148,9 @@
     </div>
   </a>
 
-  <!-- ── Moisturizing Fixer ── -->
+  <!-- Moisturizing Fixer -->
   <a class="card" href="products/moisturizing-fixer.html"
-     style="--accent:#c4527a;--glow:rgba(196,82,122,0.18);--badge-bg:rgba(196,82,122,0.18);--badge-border:rgba(196,82,122,0.6); border-top-color:#c4527a;">
+     style="--accent:#c4527a;--glow:rgba(196,82,122,0.18);--badge-bg:rgba(196,82,122,0.18);--badge-border:rgba(196,82,122,0.6); border-color:#c4527a;">
     <img src="images/moisturizing-fixer-150ml.png" alt="Moisturizing Fixer" class="card-img">
     <div class="card-content">
       <p class="card-name">Moisturizing Fixer</p>
@@ -162,9 +162,9 @@
     </div>
   </a>
 
-  <!-- ── Hair Spray ── -->
+  <!-- Hair Spray -->
   <a class="card" href="products/hairspray.html"
-     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-top-color:#1dd4c4;">
+     style="--accent:#1dd4c4;--glow:rgba(29,212,196,0.18);--badge-bg:rgba(29,212,196,0.18);--badge-border:rgba(29,212,196,0.6); border-color:#1dd4c4;">
     <img src="images/hairspray-420ml.png" alt="Hair Spray" class="card-img">
     <div class="card-content">
       <p class="card-name">Hair Spray</p>
@@ -176,9 +176,9 @@
     </div>
   </a>
 
-  <!-- ── Mattifying Dust ── -->
+  <!-- Mattifying Dust -->
   <a class="card" href="products/mattifying-dust.html"
-     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-top-color:#c8a84b;">
+     style="--accent:#c8a84b;--glow:rgba(200,168,75,0.18);--badge-bg:rgba(200,168,75,0.18);--badge-border:rgba(200,168,75,0.6); border-color:#c8a84b;">
     <img src="images/mattifying-dust-25g.png" alt="Mattifying Dust" class="card-img">
     <div class="card-content">
       <p class="card-name">Mattifying Dust</p>
@@ -194,7 +194,7 @@
 
 <footer>
   <img src="images/tedd-logo.png" alt="Tedd Grooming" class="footer-logo">
-  <p>© 2025 Tedd Grooming Company. All rights reserved.</p>
+  <p>&#169; 2025 Tedd Grooming Company. All rights reserved.</p>
 </footer>
 
 <script>
