@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Info — Tedd Grooming</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: #080808;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 52px 20px 70px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+
+  .brand-title {
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 0%, #c8a84b 50%, #fff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .brand-sub {
+    font-size: 12px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 2px;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  form {
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c8a84b;
+    opacity: 0.8;
+  }
+
+  input {
+    width: 100%;
+    padding: 13px 14px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    color: #eee;
+    font-size: 14px;
+    font-family: inherit;
+  }
+
+  input:focus {
+    outline: none;
+    border-color: rgba(200,168,75,0.5);
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #c8a84b, #e0c270);
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .message {
+    margin-top: 16px;
+    font-size: 13px;
+    text-align: center;
+    min-height: 18px;
+  }
+
+  .message.success { color: #4fd07a; }
+  .message.error { color: #e06464; }
+</style>
+</head>
+<body>
+
+  <div class="brand">
+    <div class="brand-title">Tedd Grooming</div>
+    <div class="brand-sub">Customer Info</div>
+  </div>
+
+  <form id="customerForm">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+    <div>
+      <label for="phone">Phone</label>
+      <input type="tel" id="phone" name="phone" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <button type="submit" id="submitBtn">Submit</button>
+    <div class="message" id="formMessage"></div>
+  </form>
+
+  <script>
+    // Replace with the Apps Script Web App URL from docs/apps-script/DEPLOY.md
+    const FORM_ENDPOINT = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+    const form = document.getElementById('customerForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const messageEl = document.getElementById('formMessage');
+
+    function setMessage(text, type) {
+      messageEl.textContent = text;
+      messageEl.className = 'message' + (type ? ' ' + type : '');
+    }
+
+    function isValidEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function isValidPhone(value) {
+      return /^[0-9+\-\s()]{6,}$/.test(value);
+    }
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      setMessage('', null);
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+
+      if (!name) {
+        setMessage('Please enter your name.', 'error');
+        return;
+      }
+      if (!isValidPhone(phone)) {
+        setMessage('Please enter a valid phone number.', 'error');
+        return;
+      }
+      if (!isValidEmail(email)) {
+        setMessage('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      setMessage('Submitting...', null);
+
+      try {
+        const body = new URLSearchParams({ name, phone, email });
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          body: body,
+        });
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+          setMessage('Thanks! Your info has been received.', 'success');
+          form.reset();
+        } else {
+          setMessage(data.message || 'Something went wrong. Please try again.', 'error');
+        }
+      } catch (err) {
+        setMessage('Network error. Please check your connection and try again.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
