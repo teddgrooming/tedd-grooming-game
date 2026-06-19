@@ -121,7 +121,7 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
     <canvas id="gc" width="640" height="420"></canvas>
     <div id="touch-hint">Slide finger to move the bag</div>
     <div id="ov">
-      <img class="ov-logo" src="logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
+      <img class="ov-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
       <h1>Product Catcher</h1>
       <p>60 seconds. Catch products to score. Dodge bombs or lose a life!</p>
       <button id="play-btn">Play now</button>
@@ -129,7 +129,7 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
   </div>
   <div id="sb-panel">
     <div id="logo-area">
-      <img src="logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
+      <img src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
     </div>
     <div id="sb-title">Top Scores</div>
     <div id="score-list"></div>
@@ -138,7 +138,7 @@ canvas{display:block;width:100%;border:0.5px solid rgba(255,255,255,0.08);border
 
 <div id="mob-sb">
   <div id="mob-sb-inner">
-    <img id="mob-logo" src="logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
+    <img id="mob-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'">
     <div class="mob-divider"></div>
     <div id="mob-sb-title">Top</div>
     <div id="mob-score-list"></div>
@@ -398,7 +398,7 @@ function endGame(){
   updateTimerUI(0);
   paused=false;pauseBtn.style.display='none';
   const reason=lives<=0?'No lives left!':'Time\'s up!';
-  ov.innerHTML=`<img class="ov-logo" src="logo.png" alt="Tedd Grooming" onerror="this.style.display='none'" style="width:min(110px,35%)"><h1>${reason}</h1><p>Final score: <span style="font-size:clamp(18px,4vw,22px);color:#EF9F27;font-weight:600">${score}</span><br>Level ${level} reached. Nice grooming!</p><button id="play-btn">Play again</button>`;
+  ov.innerHTML=`<img class="ov-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming" onerror="this.style.display='none'" style="width:min(110px,35%)"><h1>${reason}</h1><p>Final score: <span style="font-size:clamp(18px,4vw,22px);color:#EF9F27;font-weight:600">${score}</span><br>Level ${level} reached. Nice grooming!</p><button id="play-btn">Play again</button>`;
   ov.style.display='flex';
   document.getElementById('play-btn').addEventListener('click',startGame);
 }
