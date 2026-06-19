@@ -9,9 +9,15 @@
     },
     {
       "name": "Tedd Grooming Shop",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-l", "3002", "C:/Claude/Game"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["C:/Users/User/AppData/Roaming/npm/node_modules/serve/build/main.js", "-l", "3002", "C:/Claude/Universe/shop"],
       "port": 3002
+    }
+  ,{
+      "name": "lucky-draw",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-l", "3003", "C:/Users/User/Downloads"],
+      "port": 3003
     }
   ]
 }
