@@ -1233,9 +1233,7 @@ function spin() {
 function updateStatus() {
   const remain = remaining.length;
   const drawn = winners.length;
-  const rc = document.getElementById('remain-count');
   const nc = document.getElementById('names-count');
-  if (rc) rc.textContent = remain;
   if (nc) nc.textContent = allNames.length;
 
   const center = document.getElementById('topbar-center');
