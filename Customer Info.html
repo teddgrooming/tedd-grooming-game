@@ -39,6 +39,11 @@
     background-clip: text;
   }
 
+  .brand-logo {
+    width: 220px;
+    height: auto;
+  }
+
   .brand-sub {
     font-size: 12px;
     font-weight: 600;
@@ -107,12 +112,71 @@
 
   .message.success { color: #4fd07a; }
   .message.error { color: #e06464; }
+
+  .links-cta {
+    display: none;
+    margin-top: 26px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .links-cta.show { display: flex; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .globe-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    background: radial-gradient(circle at 30% 30%, rgba(200,168,75,0.25), rgba(200,168,75,0.05));
+    border: 1px solid rgba(200,168,75,0.4);
+    position: relative;
+    animation: globeSpark 1.8s ease-in-out infinite;
+  }
+
+  .globe-icon::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: 2px solid rgba(200,168,75,0.5);
+    animation: globeRing 1.8s ease-out infinite;
+  }
+
+  @keyframes globeSpark {
+    0%, 100% { box-shadow: 0 0 8px rgba(200,168,75,0.4); }
+    50%      { box-shadow: 0 0 22px rgba(200,168,75,0.9); }
+  }
+
+  @keyframes globeRing {
+    0%   { transform: scale(1);   opacity: 0.8; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+
+  .links-cta-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #c8a84b;
+    opacity: 0.85;
+  }
 </style>
 </head>
 <body>
 
   <div class="brand">
-    <div class="brand-title">Tedd Grooming</div>
+    <img class="brand-logo" src="shop/images/tedd-logo.png" alt="Tedd Grooming">
     <div class="brand-sub">Customer Info</div>
   </div>
 
@@ -133,6 +197,11 @@
     <div class="message" id="formMessage"></div>
   </form>
 
+  <a class="links-cta" id="linksCta" href="Links.html">
+    <div class="globe-icon">🌐</div>
+    <div class="links-cta-label">Visit Our Links</div>
+  </a>
+
   <script>
     // Replace with the Apps Script Web App URL from docs/apps-script/DEPLOY.md
     const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwbeHw8qh2stW-C_s4ztWdpVjC943fLyVhY4pWXQoscwkdPMImLXBs4Erhouda8rY23xQ/exec';
@@ -140,6 +209,7 @@
     const form = document.getElementById('customerForm');
     const submitBtn = document.getElementById('submitBtn');
     const messageEl = document.getElementById('formMessage');
+    const linksCta = document.getElementById('linksCta');
 
     function setMessage(text, type) {
       messageEl.textContent = text;
@@ -189,6 +259,7 @@
         if (data.status === 'ok') {
           setMessage('Thanks! Your info has been received.', 'success');
           form.reset();
+          linksCta.classList.add('show');
         } else {
           setMessage(data.message || 'Something went wrong. Please try again.', 'error');
         }
